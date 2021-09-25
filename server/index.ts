@@ -1,22 +1,35 @@
-import { createServer } from 'http'
-import { parse } from 'url'
-import next from 'next'
+import next from 'next';
 
-const port = parseInt(process.env.PORT || '3000', 10)
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+import Koa, { Context, Next } from 'koa';
+
+import Router from '@koa/router';
+
+import { config } from './config';
+
+const app = next({ dev: config.isDev });
+
+const handle = app.getRequestHandler();
+
+// // https://github.com/vercel/next.js/tree/canary/examples/with-typescript
+
+// // https://blog.csdn.net/weixin_33701564/article/details/87962120
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url!, true)
-    handle(req, res, parsedUrl)
-  }).listen(port)
+  const server = new Koa();
+  const router = new Router();
 
-  // tslint:disable-next-line:no-console
-  console.log(
-    `> Server listening at http://localhost:${port} as ${
-      dev ? 'development' : process.env.NODE_ENV
-    }`
-  )
-})
+  router.all('(.*)', async (ctx: Context) => {
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+  });
+
+  server.use(async (ctx: Context, next: Next) => {
+    ctx.res.statusCode = 200;
+    await next();
+  });
+
+  server.use(router.routes());
+  server.listen(config.port, () => {
+    console.log(`> Ready on http://localhost:${config.port}`);
+  });
+});

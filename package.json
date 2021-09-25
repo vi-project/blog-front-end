@@ -6,15 +6,24 @@
     "start": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
+    "axios": "^0.21.4",
+    "@koa/router": "^10.0.0",
     "cross-env": "^7.0.2",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.3",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa__router": "^8.0.8",
     "@types/node": "^12.0.12",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "4.0"
