@@ -22,10 +22,32 @@ export interface Tag {
     id: number
     key: string
     name: string
+    articleNum: number
 }
 
 export enum Status {
     POST="POST",
     DRAFT="DRAFT",
     DELETE="DELETE"
+}
+
+
+export interface I_Tag {
+    name: string
+    key: string
+}
+
+export interface I_Category {
+    name: string
+    key: string
+}
+
+
+export interface IArticleDetail {
+    [key : string] : any
+}
+
+export interface I_ArticleProps {
+    article?: IArticleDetail
+    error?: any
 }

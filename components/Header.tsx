@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from 'react';
 
-const Header = (props) => {
+const Header = (props : any) => {
     const { title = '',
         keyword = '前端知识,前端博客,web前端,CSS,javascript,前端开发,前端技术博客,Vincent前端博客,前端知识积累',
         description = 'Vincent 个人博客, 分享、记录和总结工作中的开发经验!专注于前端知识,前端博客,web前端博客,Vincent前端博客,前端开发,前端技术博客,前端知识,前端积累,CSS,javascript'

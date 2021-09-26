@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
 
 const navConfig = [
     {
@@ -25,7 +24,7 @@ const navConfig = [
 export default function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
 
-    const checked = true;
+    const checked = false;
 
     function handleBtn() {
         setShowMenu(!showMenu);
@@ -39,12 +38,8 @@ export default function NavBar() {
         }else{
             document.getElementsByTagName('body')[0].classList.remove('dark-theme');
         }
-    },[checked])
+    },[checked]);
 
-    function handleJump(router) {
-        Router.push(router)
-        setShowMenu(false)
-    }
 
     return <header>
         <nav className="navbar">
@@ -94,5 +89,5 @@ export default function NavBar() {
                 </div>
             </div>
         </nav>
-    </header>
+    </header>;
 }

@@ -6,42 +6,19 @@ const Request = axios.create({
     timeout: 30000
 });
 
+Request.interceptors.response.use(response=>{
+    if (response.status === 200 || response.status === 201) {
+        console.log('==========================',response.data)
+        return Promise.resolve(response.data);
+    }
+});
+
 const request = {
-    post(url: string, data = {}) {
-        return Request({
-            method: 'post',
-            url,
-            data,
-            timeout: 30000,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            }
-        });
-    },
     get(url: string, params = {}) {
         return Request({
             method: 'get',
             url,
             params,
-        });
-    },
-
-    delete(url: string, params = {}) {
-        return Request({
-            method: 'delete',
-            url,
-            params,
-        });
-    },
-    put(url: string, params = {}) {
-        return Request({
-            method: 'put',
-            url,
-            data: params,
-            timeout: 30000,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            }
         });
     }
 };

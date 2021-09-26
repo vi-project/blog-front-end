@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import request from '../utils/request';
-import type {Article} from "../@types";
+import type {Article, } from "../@types";
 
 type Props = {
   data: Article[]
@@ -9,7 +9,6 @@ type Props = {
 export default function Home({ data }: Props) {
   return (
     <ul>
-
       {
         data.map(item => (
           <li  key={item.id}>
@@ -35,9 +34,7 @@ export default function Home({ data }: Props) {
 
 export async function getServerSideProps(): Promise<any> {
   // Fetch data from external API
-  const res = await request.get(`/article`);
-  const { list } = res.data;
-
+  const { list } = await request.get(`/article`);
   // Pass data to the page via props
   return { props: { data: list } };
 }

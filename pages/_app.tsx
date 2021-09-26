@@ -1,18 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
+import * as React from 'react';
 import ContainerBox from '../components/Container';
-import Router from 'next/router';
 import '../public/style/index.css';
-// if(!dev){  console.log = (log) => {}}
 
-
-export function reportWebVitals(metric) {
-    console.log(metric)
+interface  IHomeProps {
+  Component: React.ElementType
+  [key: string] : any
 }
 
-export default function App({ Component, pageProps }) {
-
-    return  <ContainerBox>
+const App: React.FunctionComponent<IHomeProps> = ({Component, pageProps}) =>{
+    return <ContainerBox>
         <Component {...pageProps} />
     </ContainerBox>;
-}
+};
+
+export default App;
