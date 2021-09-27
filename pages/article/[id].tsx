@@ -2,7 +2,7 @@
 import request from "../../utils/request";
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import Header from "../../components/Header";
+import Header from "../../component/Header";
 import {Context} from "koa";
 import tocbot from "tocbot";
 import {decodeMarkDown} from  '../../utils/parse';
@@ -131,17 +131,17 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                                 <span className="post-time">创建时间: {data.created_at}</span>
                                 {/*<span>&nbsp; 浏览 &nbsp;{data.browse}</span>*/}
                                 <div>
-                  <span className="post-category">
-                    分类:
-                    <Link
-                        href={`/category/[cId]`}
-                        as={`/category/${data.category_id}`}
-                    >
-                      <a> {data.category && data.category.name} </a>
-                    </Link>
-                  </span>
+                              <span className="post-category">
+                                分类:
+                                <Link
+                                    href={`/category/[cId]`}
+                                    as={`/category/${data.category.id}`}
+                                >
+                                  <a> {data.category && data.category.name} </a>
+                                </Link>
+                              </span>
+                                    </div>
                                 </div>
-                            </div>
                         </header>
 
                         <div ref={contentRef}
@@ -164,11 +164,11 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                         <p className="copyright-item">
                             <span>本文链接:</span>
                             <span>
-                <a target="_Blank" href={_link}>
-                  {_link}
-                </a>
-              </span>
-                        </p>
+                            <a target="_Blank" href={_link}>
+                              {_link}
+                            </a>
+                          </span>
+                         </p>
                         <p className="copyright-item">
                             <span>转载时须注明出处及本声明</span>
                         </p>
@@ -183,8 +183,8 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                                             <a style={{ marginRight: "0.5rem" }}># {tag.name} </a>
                                         </Link>
                                     );
-                })}
-              </span>
+                                 })}
+                             </span>
                         </div>
                         <div>
                             <a onClick={handleBack}>back</a>

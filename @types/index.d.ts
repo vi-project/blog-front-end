@@ -38,8 +38,10 @@ export interface I_Tag {
 }
 
 export interface I_Category {
+    id: number
     name: string
     key: string
+    articles: Article[]
 }
 
 
@@ -50,4 +52,11 @@ export interface IArticleDetail {
 export interface I_ArticleProps {
     article?: IArticleDetail
     error?: any
+}
+
+export interface I_BaseList {
+    list: Article[]
+    count: number
+    page: number
+    id?: number
 }

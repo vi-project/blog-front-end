@@ -1,23 +1,29 @@
-import React from 'react';
-import request from '../../utils/request';
-import type { I_BaseList} from "../../@types";
+
+import React  from "react";
+import request from "../../utils/request";
 import {NextPageContext} from "next";
 import ArticleBaseList from "../../component/ArticleBaseList";
+import {I_BaseList} from "../../@types";
 
-const ArticleList: React.FunctionComponent<I_BaseList> = (props) =>{
-    const basePath = `/article`;
+const CategoryDetail: React.FunctionComponent<I_BaseList> = (props) =>{
+    const basePath = `/category/${props.id}`;
     return <ArticleBaseList {...props} basePath={basePath} />;
 };
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<any> {
     // Fetch data from external API
-    const {page} = ctx.query;
+    const {page, id} = ctx.query;
     const payload = {
+        category: id,
         page,
     };
     const data = await request.get(`/article`, payload);
     // Pass data to the page via props
-    return { props: { ...data}  };
+    return { props: { ...data , id}  };
 }
 
-export  default  ArticleList;
+
+export default  CategoryDetail;
+
+
+

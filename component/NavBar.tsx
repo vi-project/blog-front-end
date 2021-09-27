@@ -4,7 +4,7 @@ import Link from 'next/link';
 const navConfig = [
     {
         title: '归档',
-        router: '/archive'
+        router: '/article'
     },
     {
         title: '分类',

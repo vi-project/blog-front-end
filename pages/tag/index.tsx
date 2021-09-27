@@ -10,7 +10,6 @@ interface I_TagsProps {
 
 const TagPage: React.FunctionComponent<I_TagsProps> = (props) => {
     const { data = [] } = props;
-    console.log('tag', data);
     return (
         <>
             {/*<Header title={'标签'} />*/}

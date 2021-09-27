@@ -1,16 +1,27 @@
 
 import React  from "react";
-import {NextRouter, useRouter} from 'next/router';
-import ArticleBaseList from "../../components/ArticleBaseList";
+import request from "../../utils/request";
+import {NextPageContext} from "next";
+import ArticleBaseList from "../../component/ArticleBaseList";
+import {I_BaseList} from "../../@types";
 
-
-const TagDetail: React.FunctionComponent = () =>{
-    const router: NextRouter = useRouter();
-    const id = Number(router.query.id);
-    const tagId = isNaN(id)? 0 : id;
-    // return <div>23</div>
-    return <ArticleBaseList tagId={tagId} />;
+const TagDetail: React.FunctionComponent<I_BaseList> = (props) =>{
+    const basePath = `/tag/${props.id}`;
+    return <ArticleBaseList {...props} basePath={basePath} />;
 };
+
+export async function getServerSideProps(ctx: NextPageContext): Promise<any> {
+    // Fetch data from external API
+    const {page, id} = ctx.query;
+    const payload = {
+        tag: id,
+        page,
+    };
+    const data = await request.get(`/article`, payload);
+    // Pass data to the page via props
+    return { props: { ...data , id}  };
+}
+
 
 export default  TagDetail;
 
