@@ -1,44 +1,31 @@
 import React from 'react';
+import request from '../utils/request';
 
-const Index:React.FunctionComponent<any> = () => {
-    return <>
+const Index:React.FunctionComponent<any> = (props) => {
+    const { data } = props;
+    return <div className="main">
         <div className="container">
-            <div className="intro">
-                <div className="avatar">
-                    <a>
-                        <img src="/avatar.png" alt="avatar" />
-                    </a>
-                </div>
-                <div className="nickname">
-                    Vincent
-                </div>
-                <div className="description">
-                    <p>在编程世界，我们如果不精进就是退步</p>
-                </div>
-                <div className="links">
-
-                    <a className="link-item" title="github" target="_blank" href="https://github.com/vincent-cy">
-                        <i className="iconfont icongit" />
-                    </a>
-
-                    <a className="link-item" title="csdn" target="_blank" href="https://blog.csdn.net/qq_34767374">
-                        <i className="iconfont iconcsdn1-copy" />
-                    </a>
-
-                    <a className="link-item" title="cnblogs" target="_blank" href="https://www.cnblogs.com/vincent-c">
-                        <i className="iconfont iconblog" />
-                    </a>
-
+            <div className="post-wrap">
+                <div className="intro">
+                    <h1 className="home-title">{data.title}</h1>
+                      <p className="home-description">
+                        {data.content}
+                        <span>&nbsp;&nbsp;{data.from}
+                        <time>{data.created_at}</time>
+                    </span>
+                  </p>
                 </div>
             </div>
         </div>
-    </>;
+    </div>;
 };
 
-export async function getStaticProps() {
-    return {
-        props: {},
-    };
+
+export async function getServerSideProps(): Promise<any> {
+    // Fetch data from external API
+    const {data} = await request.get('/latest');
+    // Pass data to the page via props
+    return { props: { data } };
 }
 
 export default Index;
