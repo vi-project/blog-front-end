@@ -23,21 +23,27 @@ const navConfig = [
 
 export default function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
-
-    const checked = false;
+    const [checked, setCheck] = useState(false);
 
     function handleBtn() {
         setShowMenu(!showMenu);
     }
     function toggleTheme() {
-        // dispatch({type:'toggle-theme'})
+        const currentTheme = window.localStorage && window.localStorage.getItem('theme');
+        const theme = currentTheme === 'dark' ? 'light' : 'dark';
+        window.localStorage && window.localStorage.setItem('theme',theme);
+        const isDark = theme === 'dark';
+        setCheck(isDark);
     }
     useEffect(()=>{
-        if(checked){
-            document.getElementsByTagName('body')[0].classList.add('dark-theme');
-        }else{
-            document.getElementsByTagName('body')[0].classList.remove('dark-theme');
-        }
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme');
+            const isDark = currentTheme === 'dark';
+             setCheck(isDark);
+            if(isDark){
+                document.getElementsByTagName('body')[0].classList.add('dark-theme');
+            }else{
+                document.getElementsByTagName('body')[0].classList.remove('dark-theme');
+            }
     },[checked]);
 
 
