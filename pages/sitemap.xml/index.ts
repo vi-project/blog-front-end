@@ -8,20 +8,20 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const data: any = await request.get(`/article`, { size: 1000 });
 
     const urls = data.list.map((u: Article) => ({
-        loc: `https://wekic.com/article/${u.id}`,
+        loc: `https://www.wekic.com/article/${u.id}`,
         lastmod: new Date().toISOString(),
         changefreq: "monthly"
         // priority
     }));
 
     urls.push({
-        loc: 'https://wekic.com',
+        loc: 'https://www.wekic.com',
         lastmod: new Date().toISOString(),
         // changefreq
         // priority
     });
     urls.push({
-        loc: 'https://wekic.com/article',
+        loc: 'https://www.wekic.com/article',
         lastmod: new Date().toISOString(),
         // changefreq
         // priority
