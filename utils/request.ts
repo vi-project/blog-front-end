@@ -8,7 +8,7 @@ const Request = axios.create({
 
 Request.interceptors.response.use(response=>{
     if (response.status === 200 || response.status === 201) {
-        return Promise.resolve(response.data);
+        return Promise.resolve(response);
     }
 });
 

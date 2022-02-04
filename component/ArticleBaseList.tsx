@@ -6,7 +6,7 @@ import type {Article} from "../@types";
 
 
 interface I_BaseList {
-    list: Article[]
+    data: Article[]
     count: number
     page: number
     basePath: string
@@ -16,7 +16,7 @@ interface I_BaseList {
 const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
     let lastYear: number = 0;
 
-    const {list, count, page, basePath} = props;
+    const {data:list, count, page, basePath} = props;
 
     const isFirstPage = +page === 1;
 

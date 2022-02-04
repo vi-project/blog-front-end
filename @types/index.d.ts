@@ -55,7 +55,7 @@ export interface I_ArticleProps {
 }
 
 export interface I_BaseList {
-    list: Article[]
+    data: Article[]
     count: number
     page: number
     id?: number

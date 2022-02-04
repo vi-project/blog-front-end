@@ -42,9 +42,9 @@ const TagPage: React.FunctionComponent<I_TagsProps> = (props) => {
 
 export async function getServerSideProps(): Promise<any> {
     // Fetch data from external API
-    const {data } = await request.get(`/tag`);
+    const { data } = await request.get(`/tag`);
     // Pass data to the page via props
-    return { props: { data } };
+    return { props: { data: data.data } };
 }
 
 

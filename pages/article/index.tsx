@@ -11,11 +11,11 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) =>{
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<any> {
     // Fetch data from external API
-    const {page} = ctx.query;
+    const {page=1} = ctx.query ;
     const payload = {
         page,
     };
-    const data = await request.get(`/article`, payload);
+    const {data} = await request.get(`/article`, payload);
     // Pass data to the page via props
     return { props: { ...data}  };
 }

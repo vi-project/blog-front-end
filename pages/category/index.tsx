@@ -9,7 +9,6 @@ interface I_CategoryProps {
 
 const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
    const { data } = props;
-    console.log('==========', props);
     return (
         <>
         <div className="container">
@@ -63,7 +62,7 @@ export async function getServerSideProps(): Promise<any> {
     // Fetch data from external API
     const { data } = await request.get(`/category`);
     // Pass data to the page via props
-    return { props: { data} };
+    return { props: { data:data.data} };
 }
 
 

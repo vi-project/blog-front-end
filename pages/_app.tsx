@@ -2,7 +2,7 @@ import * as React from 'react';
 import ContainerBox from '../component/Container';
 import '../public/style/index.css';
 
-interface  IHomeProps {
+interface IHomeProps {
   Component: React.ElementType
   [key: string] : any
 }

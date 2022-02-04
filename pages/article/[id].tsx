@@ -159,7 +159,7 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
 
                     <section className="post-copyright">
                         <p className="copyright-item">
-                            <span>版权属于: {data.author}</span>
+                            <span>版权属于: {data.author.nickname}</span>
                         </p>
                         <p className="copyright-item">
                             <span>本文链接:</span>
@@ -210,6 +210,7 @@ export async function getServerSideProps(ctx: Context): Promise<any> {
     const {query: {id}} = ctx;
     try{
         const {data} = await request.get(`/article/${id}`,{});
+        console.log('dddddd', data);
         return { props: { article: data } };
     }catch (e) {
         return { props: { error: 'article not exists.' } };

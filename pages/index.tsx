@@ -23,7 +23,7 @@ const Index:React.FunctionComponent<any> = (props) => {
 
 export async function getServerSideProps(): Promise<any> {
     // Fetch data from external API
-    const {data} = await request.get('/latest');
+    const {data} = await request.get('daily/latest');
     // Pass data to the page via props
     return { props: { data } };
 }
