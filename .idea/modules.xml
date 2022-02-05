@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/cy-next-blog.iml" filepath="$PROJECT_DIR$/.idea/cy-next-blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ts-server/.idea/ts-server.iml" filepath="$PROJECT_DIR$/../ts-server/.idea/ts-server.iml" />
     </modules>
   </component>
 </project>
