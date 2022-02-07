@@ -9,12 +9,12 @@ const ResumeView: React.FunctionComponent<any> = (props) => {
     return (
         <div className="container">
             <article className="post-wrap">
-            <div ref={contentRef}
-                className="post-content"
-                style={{ paddingTop: "2rem" }}
-                dangerouslySetInnerHTML={{ __html: ht_ }}
-                />
-        </article>
+                <div ref={contentRef}
+                    className="post-content"
+                    style={{ paddingTop: "2rem" }}
+                    dangerouslySetInnerHTML={{ __html: ht_ }}
+                    />
+            </article>
         </div>
     );
 };
