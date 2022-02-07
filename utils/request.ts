@@ -6,7 +6,7 @@ const Request = axios.create({
     timeout: 30000
 });
 
-Request.interceptors.response.use(response=>{
+Request.interceptors.response.use(response => {
     if (response.status === 200 || response.status === 201) {
         return Promise.resolve(response);
     }
@@ -18,6 +18,9 @@ const request = {
             method: 'get',
             url,
             params,
+            headers: {
+                client_id: 'vincent.cy@foxmail.com'
+            }
         });
     }
 };

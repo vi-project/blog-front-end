@@ -3,10 +3,10 @@ import request from "../../utils/request";
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Header from "../../component/Header";
-import {Context} from "koa";
+import { Context } from "koa";
 import tocbot from "tocbot";
-import {decodeMarkDown} from  '../../utils/parse';
-import {IArticleDetail, I_ArticleProps} from '../../@types/index';
+import { decodeMarkDown } from '../../utils/parse';
+import { IArticleDetail, I_ArticleProps } from '../../@types/index';
 
 const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
     const contentRef = useRef<HTMLDivElement>(null);
@@ -22,9 +22,9 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
 
     const showBig = (src: string) => {
         setUrl(src);
-        if(popupRef){
-            if(popupRef.current){
-                if(popupRef.current.style){
+        if (popupRef) {
+            if (popupRef.current) {
+                if (popupRef.current.style) {
                     popupRef.current.style.display = "block";
                     popupRef.current.style.cursor = "zoom-out";
                 }
@@ -131,17 +131,17 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                                 <span className="post-time">创建时间: {data.created_at}</span>
                                 {/*<span>&nbsp; 浏览 &nbsp;{data.browse}</span>*/}
                                 <div>
-                              <span className="post-category">
-                                分类:
-                                <Link
-                                    href={`/category/[cId]`}
-                                    as={`/category/${data.category.id}`}
-                                >
-                                  <a> {data.category && data.category.name} </a>
-                                </Link>
-                              </span>
-                                    </div>
+                                    <span className="post-category">
+                                        分类:
+                                        <Link
+                                            href={`/category/[cId]`}
+                                            as={`/category/${data.category.id}`}
+                                        >
+                                            <a> {data.category && data.category.name} </a>
+                                        </Link>
+                                    </span>
                                 </div>
+                            </div>
                         </header>
 
                         <div ref={contentRef}
@@ -164,11 +164,11 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                         <p className="copyright-item">
                             <span>本文链接:</span>
                             <span>
-                            <a target="_Blank" href={_link}>
-                              {_link}
-                            </a>
-                          </span>
-                         </p>
+                                <a target="_Blank" href={_link}>
+                                    {_link}
+                                </a>
+                            </span>
+                        </p>
                         <p className="copyright-item">
                             <span>转载时须注明出处及本声明</span>
                         </p>
@@ -177,14 +177,14 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                         <div>
                             <span>Tags:</span>
                             <span className="tag">
-                                {data.tags.map((tag:any) => {
+                                {data.tags.map((tag: any) => {
                                     return (
                                         <Link key={tag.id} href="/tag/[id]" as={`/tag/${tag.id}`}>
                                             <a style={{ marginRight: "0.5rem" }}># {tag.name} </a>
                                         </Link>
                                     );
-                                 })}
-                             </span>
+                                })}
+                            </span>
                         </div>
                         <div>
                             <a onClick={handleBack}>back</a>
@@ -200,24 +200,27 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
 
 };
 
-const ArticleDetail: React.FunctionComponent<I_ArticleProps> = (props) =>{
-    const {article, error} = props;
-    if(!article) return <div>{error}</div>;
+const ArticleDetail: React.FunctionComponent<I_ArticleProps> = (props) => {
+    const { article, error } = props;
+    if (!article) return <div className="container">
+        <article className="post-wrap">
+            <h2> {error}</h2>
+        </article></div>;
     return <Detail article={article} />;
 };
 
 export async function getServerSideProps(ctx: Context): Promise<any> {
-    const {query: {id}} = ctx;
-    try{
-        const {data} = await request.get(`/article/${id}`,{});
+    const { query: { id } } = ctx;
+    try {
+        const { data } = await request.get(`/article/${id}`, {});
         return { props: { article: data } };
-    }catch (e) {
+    } catch (e) {
         return { props: { error: 'article not exists.' } };
     }
 
 }
 
-export default  ArticleDetail;
+export default ArticleDetail;
 
 
 
