@@ -210,7 +210,6 @@ export async function getServerSideProps(ctx: Context): Promise<any> {
     const {query: {id}} = ctx;
     try{
         const {data} = await request.get(`/article/${id}`,{});
-        console.log('dddddd', data);
         return { props: { article: data } };
     }catch (e) {
         return { props: { error: 'article not exists.' } };

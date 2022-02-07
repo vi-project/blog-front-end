@@ -12,12 +12,12 @@ const CategoryDetail: React.FunctionComponent<I_BaseList> = (props) =>{
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<any> {
     // Fetch data from external API
-    const {page, id} = ctx.query;
+    const {page= 1, id} = ctx.query;
     const payload = {
-        category: id,
+        categoryId: id,
         page,
     };
-    const data = await request.get(`/article`, payload);
+    const {data} = await request.get(`/article`, payload);
     // Pass data to the page via props
     return { props: { ...data , id}  };
 }

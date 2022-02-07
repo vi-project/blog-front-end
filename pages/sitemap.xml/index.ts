@@ -5,9 +5,8 @@ import { Article } from '../../@types';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     // const urls = await fetch('https//example.com/api')
-    const data: any = await request.get(`/article`, { size: 1000 });
-
-    const urls = data.list.map((u: Article) => ({
+    const {data}: any = await request.get(`/article`, { size: 1000 });
+    const urls = data.data.map((u: Article) => ({
         loc: `https://www.wekic.com/article/${u.id}`,
         lastmod: new Date().toISOString(),
         changefreq: "monthly"

@@ -52,47 +52,49 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                 })
             }
             <div >
-                <nav aria-label="Page navigation" className="page-center">
-                    <ul className="pagination">
-
-                        <li className={isFirstPage ? 'disabled' : '' }>
-                            {
-                                isFirstPage ? <span>
+                {
+                    !!count ? <nav aria-label="Page navigation" className="page-center">
+                        <ul className="pagination">
+                            <li className={isFirstPage ? 'disabled' : '' }>
+                                {
+                                    isFirstPage ? <span>
                                         <span aria-hidden="true">&laquo;</span>
                                     </span>: <Link href={`${basePath}/?page=${+page - 1}`} >
-                                    <a aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </Link>
-                            }
-                        </li>
-                        {
-                            temp.map((_,i)=>{
-                                 return (
-                                     <Fragment key={i}>
-
-                                     <li className={+page === (i+1) ? "active": ''}>
-                                         <Link href={`${basePath}/?page=${i + 1}`} >
-                                            <a >{i+1}</a>
-                                         </Link>
-                                     </li>
-
-                                </Fragment>
-                                 );
-                            })
-                        }
-                        <li className={isLastPage ? 'disabled' : '' }>
+                                        <a aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </Link>
+                                }
+                            </li>
                             {
-                                isLastPage? <span> <span aria-hidden="true">&raquo;</span> </span>
-                                    :  <Link href={`${basePath}/?page=${+page + 1}`} >
-                                    <a aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </Link>
+                                temp.map((_,i)=>{
+                                    return (
+                                        <Fragment key={i}>
+
+                                            <li className={+page === (i+1) ? "active": ''}>
+                                                <Link href={`${basePath}/?page=${i + 1}`} >
+                                                    <a >{i+1}</a>
+                                                </Link>
+                                            </li>
+
+                                        </Fragment>
+                                    );
+                                })
                             }
-                        </li>
-                    </ul>
-                </nav>
+                            <li className={isLastPage ? 'disabled' : '' }>
+                                {
+                                    isLastPage? <span> <span aria-hidden="true">&raquo;</span> </span>
+                                        :  <Link href={`${basePath}/?page=${+page + 1}`} >
+                                            <a aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </Link>
+                                }
+                            </li>
+                        </ul>
+                    </nav> : null
+                }
+
             </div>
         </div>
     );
