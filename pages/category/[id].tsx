@@ -14,7 +14,7 @@ export async function getServerSideProps(ctx: NextPageContext): Promise<any> {
     // Fetch data from external API
     const {page= 1, id} = ctx.query;
     const payload = {
-        category: id,
+        categoryId: id,
         page,
     };
     const {data} = await request.get(`/article`, payload);
