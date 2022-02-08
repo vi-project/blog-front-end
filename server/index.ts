@@ -10,10 +10,6 @@ const app = next({ dev: config.isDev });
 
 const handle = app.getRequestHandler();
 
-// // https://github.com/vercel/next.js/tree/canary/examples/with-typescript
-
-// // https://blog.csdn.net/weixin_33701564/article/details/87962120
-
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();

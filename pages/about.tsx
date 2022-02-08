@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Index:React.FunctionComponent<any> = () => {
+const Index: React.FunctionComponent<any> = () => {
     return <>
         <div className="container">
             <div className="intro">
