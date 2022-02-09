@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { Fragment } from 'react';
 import Pagination from 'rc-pagination';
 import type { Article } from "../@types";
-
+import { useRouter } from 'next/router';
 
 interface I_BaseList {
     data: Article[]
@@ -14,7 +14,8 @@ interface I_BaseList {
 
 
 const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
-    let lastYear: number = 0;
+    let lastYear = 0;
+    const router = useRouter();
 
     const { data: list, count, page, basePath } = props;
 
@@ -25,6 +26,10 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
         return element;
     };
 
+
+    const onChange = (page: number) => {
+        router.push(`${basePath}/?page=${page}`);
+    };
 
     return (
         <div className="post-wrap archive">
@@ -39,7 +44,7 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     return <Fragment key={art.id}>
                         {renderYear}
                         <article className="archive-item">
-                            <Link href="/article/[id]" as={`/ article / ${art.id} `} >
+                            <Link href="/article/[id]" as={`/article/${art.id}`} >
                                 <a className="archive-item-link">
                                     {art.title}
                                 </a>
@@ -57,6 +62,7 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     total={count}
                     itemRender={itemRender}
                     style={{ marginTop: '50px' }}
+                    onChange={onChange}
                 />
 
             </div>
