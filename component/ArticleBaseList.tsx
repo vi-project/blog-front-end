@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 import Pagination from 'rc-pagination';
-// import Api from '../redux/api'
 import type { Article } from "../@types";
 
 
