@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import React, {Fragment} from 'react';
-// import Pagination from './Pagination'
+import React, { Fragment } from 'react';
+import Pagination from 'rc-pagination';
 // import Api from '../redux/api'
-import type {Article} from "../@types";
+import type { Article } from "../@types";
 
 
 interface I_BaseList {
@@ -13,18 +13,19 @@ interface I_BaseList {
 }
 
 
+
 const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
     let lastYear: number = 0;
 
-    const {data:list, count, page, basePath} = props;
+    const { data: list, count, page, basePath } = props;
 
-    const isFirstPage = +page === 1;
+    const itemRender = (current: number, type: any, element: any) => {
+        if (type === 'page') {
+            return <Link href={`${basePath}/?page=${current}`}><a>{current}</a></Link>;
+        }
+        return element;
+    };
 
-    const pageCount =  Math.ceil(count / 10) || 0;
-
-    const temp = Array(pageCount).fill(1);
-
-    const isLastPage = +page === pageCount;
 
     return (
         <div className="post-wrap archive">
@@ -39,7 +40,7 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     return <Fragment key={art.id}>
                         {renderYear}
                         <article className="archive-item">
-                            <Link href="/article/[id]" as={`/article/${art.id}`} >
+                            <Link href="/article/[id]" as={`/ article / ${art.id} `} >
                                 <a className="archive-item-link">
                                     {art.title}
                                 </a>
@@ -51,49 +52,13 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     </Fragment>;
                 })
             }
-            <div >
-                {
-                    !!count ? <nav aria-label="Page navigation" className="page-center">
-                        <ul className="pagination">
-                            <li className={isFirstPage ? 'disabled' : '' }>
-                                {
-                                    isFirstPage ? <span>
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </span>: <Link href={`${basePath}/?page=${+page - 1}`} >
-                                        <a aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </Link>
-                                }
-                            </li>
-                            {
-                                temp.map((_,i)=>{
-                                    return (
-                                        <Fragment key={i}>
-
-                                            <li className={+page === (i+1) ? "active": ''}>
-                                                <Link href={`${basePath}/?page=${i + 1}`} >
-                                                    <a >{i+1}</a>
-                                                </Link>
-                                            </li>
-
-                                        </Fragment>
-                                    );
-                                })
-                            }
-                            <li className={isLastPage ? 'disabled' : '' }>
-                                {
-                                    isLastPage? <span> <span aria-hidden="true">&raquo;</span> </span>
-                                        :  <Link href={`${basePath}/?page=${+page + 1}`} >
-                                            <a aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </Link>
-                                }
-                            </li>
-                        </ul>
-                    </nav> : null
-                }
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Pagination
+                    current={page}
+                    total={count}
+                    itemRender={itemRender}
+                    style={{ marginTop: '50px' }}
+                />
 
             </div>
         </div>
