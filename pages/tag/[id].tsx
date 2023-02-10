@@ -7,7 +7,9 @@ import {I_BaseList} from "../../@types";
 
 const TagDetail: React.FunctionComponent<I_BaseList> = (props) =>{
     const basePath = `/tag/${props.id}`;
-    return <ArticleBaseList {...props} basePath={basePath} />;
+    return <div className="post-wrap">
+        <ArticleBaseList {...props} basePath={basePath} />
+    </div>;
 };
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<any> {

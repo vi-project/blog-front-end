@@ -5,7 +5,6 @@ const isDev: boolean = process.env.NODE_ENV !== 'production';
 const envFile = `.env.${isDev ? 'dev' : 'prod'}`;
 
 dotenv.config({ path: envFile });
-
 export interface Config {
     port: number;
     isDev: boolean,
