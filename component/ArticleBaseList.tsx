@@ -32,30 +32,35 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
     };
 
     return (
-        <div className="post-wrap archive">
+        <>
+            <ul>
             {
                 list?.map(art => {
                     const cur_year: number = new Date(art.created_at).getFullYear();
                     const someYear = lastYear === cur_year;
                     if (!someYear) lastYear = cur_year;
-                    const renderYear = someYear ? '' : <h3 style={{
-                        fontWeight: 'bold'
-                    }}>{cur_year}</h3>;
+                    const renderYear = someYear ? '' : <div className="relative pointer-events-none  h20">
+                        <span className="absolute  text-8em  op05 left--3rem top--2rem">{cur_year}</span>
+                    </div>;
                     return <Fragment key={art.id}>
                         {renderYear}
-                        <article className="archive-item">
-                            <Link href="/article/[id]" as={`/article/${art.id}`} >
-                                <a className="archive-item-link">
-                                    {art.title}
-                                </a>
-                            </Link>
-                            <span className="archive-item-date">
-                                {art.created_at}
-                            </span>
-                        </article>
+                            <a href={`/article/${art.id}`} className="op60 item block font-normal mb-6 mt-2 no-underline" >
+                                <li className="no-underline">
+                                <div className="text-lg ">
+                                    <span className="align-middle">{art.title}</span>
+                                </div>
+
+                                <div className="text-sm">
+                                    <span className="op50">
+                                        {art.created_at}
+                                    </span>
+                                </div>
+                                </li>
+                            </a>
                     </Fragment>;
                 })
             }
+            </ul>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Pagination
                     current={page}
@@ -66,7 +71,7 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                 />
 
             </div>
-        </div>
+        </>
     );
 };
 

@@ -13,7 +13,7 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
         <>
         <div className="container">
             <div className="post-wrap categories">
-                <h2 className="post-title">-&nbsp;分类&nbsp;-</h2>
+                <div className="post-title">分类&nbsp;-</div>
                 <div className="categories-card">
                     {
                         data.map((c: I_Category) => {

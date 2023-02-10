@@ -6,7 +6,7 @@ import ArticleBaseList from "../../component/ArticleBaseList";
 
 const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
     const basePath = `/article`;
-    return <ArticleBaseList {...props} basePath={basePath} />;
+    return <div className="post-wrap"><ArticleBaseList {...props} basePath={basePath} /></div>;
 };
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<any> {

@@ -1,0 +1,59 @@
+@import "height.css";
+@import "text.css";
+
+.op10 {
+    opacity: .1;
+}
+
+.op60 {
+    opacity: .6;
+}
+
+.op05{
+    opacity: .05;
+}
+
+.op50{
+    opacity: .5;
+}
+
+.top--2rem {
+    top: 6rem;
+}
+
+.left--3rem {
+    left: -3rem;
+}
+
+.mt-2 {
+    margin-top: .5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.pt-10 {
+    padding-top: 4rem;
+}
+
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.block  {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-self-center {
+    justify-self: center;
+}

@@ -217,7 +217,6 @@ export async function getServerSideProps(ctx: Context): Promise<any> {
     } catch (e) {
         return { props: { error: 'article not exists.' } };
     }
-
 }
 
 export default ArticleDetail;

@@ -59,4 +59,6 @@ export interface I_BaseList {
     count: number
     page: number
     id?: number
+
+    category?: I_Category
 }
