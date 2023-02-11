@@ -9,7 +9,7 @@ const Index: React.FunctionComponent<any> = () => {
                         <img src="/avatar.png" alt="avatar" />
                     </a>
                 </div>
-                <div className="nickname b-red">
+                <div className="text-3em text-red">
                     Vincent
                 </div>
                 <div className="description">

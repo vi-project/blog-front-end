@@ -47,27 +47,28 @@ export default function NavBar() {
     },[checked]);
 
 
-    return <header>
-        <nav className="b-red">
-            <div className="container">
-                <div className="navbar-header header-logo">
-                    <Link href={'/'}>
-                        <a href=''>
-                            Vincent
-                        </a>
-                    </Link>
-                </div>
-                <div className="menu navbar-right">
+    return <header className="z-40 header">
+        <Link href={'/'}>
+            <a href='' className="w-10 h-10 absolute lg:fixed m-6 select-none outline-none">
+                V
+            </a>
+        </Link>
+        <nav className="nav">
+            <div />
+
+            <div className="grid grid-gap-4.8 grid-auto-flow-col">
                     {
                         navConfig.map((nav, idx) => {
                             return <Link key={idx} href={nav.router} >
-                                <a className="menu-item" >{nav.title}</a>
+                                <a className="menu-item text-red lt-md:hidden" >
+                                    <span>{nav.title}</span>
+                                    <div className="i-ri-article-line"></div>
+                                </a>
                             </Link>;
                         })
                     }
                         <input id="switch_default" checked={checked} type="checkbox" onChange={toggleTheme} className="switch_default"/>
                         <label htmlFor="switch_default" className="toggleBtn" ></label>
-                </div>
             </div>
         </nav>
 

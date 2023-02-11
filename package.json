@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev:css": "unocss 'pages/**/*.tsx' --out-file=public/styles/uno.css --watch",
+    "dev:css": "unocss '*/**/*.tsx' --out-file=public/styles/uno.css --watch",
     "dev:next": "nodemon",
     "dev": "run-p dev:*",
-    "css": "unocss 'pages/**/*.tsx' --out-file=public/styles/uno.css",
+    "css": "unocss '*/**/*.tsx' --out-file=public/styles/uno.css",
     "build": "npm run css && next build && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "push": "git add . && git commit -m 'cicd' && git push"

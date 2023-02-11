@@ -207,3 +207,64 @@
   src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyYAZ9hiA.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+/* layer: shortcuts */
+.container{max-width:100%;}
+@media (min-width: 640px){
+.container{max-width:640px;}
+}
+@media (min-width: 768px){
+.container{max-width:768px;}
+}
+@media (min-width: 1024px){
+.container{max-width:1024px;}
+}
+@media (min-width: 1280px){
+.container{max-width:1280px;}
+}
+@media (min-width: 1536px){
+.container{max-width:1536px;}
+}
+/* layer: default */
+.pointer-events-none{pointer-events:none;}
+.absolute{position:absolute;}
+.relative{position:relative;}
+.left--3rem{left:-3rem;}
+.top-4\.7rem{top:4.7rem;}
+.z-40{z-index:40;}
+.grid{display:grid;}
+.grid-auto-flow-col{grid-auto-flow:column;}
+.m-6{margin:1.5rem;}
+.mb-6{margin-bottom:1.5rem;}
+.mt-2{margin-top:0.5rem;}
+.block{display:block;}
+.inline-block{display:inline-block;}
+.h-10{height:2.5rem;}
+.h20{height:5rem;}
+.h4{height:1rem;}
+.w-10{width:2.5rem;}
+.flex{display:flex;}
+.select-none{user-select:none;}
+.justify-center{justify-content:center;}
+.grid-gap-4\.8{grid-gap:1.2rem;gap:1.2rem;}
+.b-red{--un-border-opacity:1;border-color:rgba(248,113,113,var(--un-border-opacity));}
+.pt-10{padding-top:2.5rem;}
+.align-middle{vertical-align:middle;}
+.text-3em{font-size:3em;}
+.text-4em{font-size:4em;}
+.text-8em{font-size:8em;}
+.text-lg{font-size:1.125rem;line-height:1.75rem;}
+.text-sm{font-size:0.875rem;line-height:1.25rem;}
+.font-normal{font-weight:400;}
+.text-red{--un-text-opacity:1;color:rgba(248,113,113,var(--un-text-opacity));}
+.no-underline{text-decoration:none;}
+.op10{opacity:0.1;}
+.op50{opacity:0.5;}
+.op60{opacity:0.6;}
+.outline-none{outline:2px solid transparent;outline-offset:2px;}
+@media (max-width: 767.9px){
+.lt-md\:hidden{display:none;}
+}
+@media (min-width: 1024px){
+.lg\:fixed{position:fixed;}
+}

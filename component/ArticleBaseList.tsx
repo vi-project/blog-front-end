@@ -40,7 +40,7 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     const someYear = lastYear === cur_year;
                     if (!someYear) lastYear = cur_year;
                     const renderYear = someYear ? null : <div className="relative pointer-events-none  h20">
-                        <span className="absolute  text-8em  op10 left--3rem top--2rem">{cur_year}</span>
+                        <span className="absolute  text-8em  op10 left--3rem top-4.7rem">{cur_year}</span>
                     </div>;
                     return <Fragment key={art.id}>
                         {renderYear}
