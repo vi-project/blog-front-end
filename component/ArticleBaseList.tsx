@@ -44,19 +44,21 @@ const ArticleList: React.FunctionComponent<I_BaseList> = (props) => {
                     </div>;
                     return <Fragment key={art.id}>
                         {renderYear}
-                            <a href={`/article/${art.id}`} className="op60 item block font-normal mb-6 mt-2 no-underline" >
+                        <Link  href='/article/[id]' as={`/article/${art.id}`} >
+                            <a  className="op60 item block font-normal mb-6 mt-2 no-underline" >
                                 <li className="no-underline">
-                                <div className="text-lg ">
-                                    <span className="align-middle">{art.title}</span>
-                                </div>
+                                    <div className="text-lg ">
+                                        <span className="align-middle">{art.title}</span>
+                                    </div>
 
-                                <div className="text-sm">
-                                    <span className="op50">
-                                        {art.created_at}
-                                    </span>
-                                </div>
+                                    <div className="text-sm">
+                                        <span className="op50">
+                                            {art.created_at}
+                                        </span>
+                                    </div>
                                 </li>
                             </a>
+                            </Link>
                     </Fragment>;
                 })
             }

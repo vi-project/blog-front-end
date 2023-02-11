@@ -48,7 +48,7 @@ export default function NavBar() {
 
 
     return <header>
-        <nav className="navbar">
+        <nav className="b-red">
             <div className="container">
                 <div className="navbar-header header-logo">
                     <Link href={'/'}>

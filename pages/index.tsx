@@ -7,7 +7,7 @@ const Index: React.FunctionComponent<any> = (props) => {
         <div className="container">
             <div className="post-wrap">
                 <div className="intro">
-                    <h1 className="home-title">{data.title}</h1>
+                    <h1 className="home-title b-red">{data.title}</h1>
                     <p className="home-description">
                         {data.content}
                         <span>&nbsp;&nbsp;{data.from}
