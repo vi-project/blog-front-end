@@ -6,8 +6,8 @@ const ResumeView: React.FunctionComponent<any> = (props) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const ht_ = decodeMarkDown(props.content || "");
     return (
-        <div className="container">
-            <article className="post-wrap">
+        <div className="prose m-auto">
+            <article>
                 <div ref={contentRef}
                     className="post-content"
                     style={{ paddingTop: "2rem" }}

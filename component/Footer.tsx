@@ -1,8 +1,10 @@
 import React from 'react';
 export default function Footer() {
-    return <footer className="footer">
-        <div className="copyright">
-            <span>©  | <a rel="noreferrer" href="http://www.beian.miit.gov.cn" target="_blank">湘ICP备20014327号-1</a></span>
+    return <footer className="w-full bottom-0">
+        <div className="mt-10 mb-6 prose m-auto opacity-50 flex text-center">
+            <span className="text-sm align-middle">
+                © Vincent Chen
+            </span>
         </div>
     </footer>;
 }

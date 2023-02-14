@@ -6,12 +6,10 @@ import Header from "./Header";
 export default function Container(props: any) {
     return <>
         <Header />
-        <div className="wrapper" >
-            <NavBar />
-            <div className="main">
-                {props.children}
-            </div>
+        <NavBar />
+        <main className="px-7 py-10">
+            {props.children}
             <Footer />
-        </div>
+        </main>
     </>;
 }

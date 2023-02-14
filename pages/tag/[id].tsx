@@ -4,11 +4,20 @@ import request from "../../utils/request";
 import {NextPageContext} from "next";
 import ArticleBaseList from "../../component/ArticleBaseList";
 import {I_BaseList} from "../../@types";
+import NotFound from "../../component/NotFound";
 
 const TagDetail: React.FunctionComponent<I_BaseList> = (props) =>{
+    console.log('props', props);
     const basePath = `/tag/${props.id}`;
-    return <div className="post-wrap">
-        <ArticleBaseList {...props} basePath={basePath} />
+    return <div className="prose m-auto">
+        {
+            !props.tag ? <NotFound /> : <>
+                <div className="pointer-events-none">
+                    <span className="text-4em">{props.tag.name}</span>
+                </div>
+                <ArticleBaseList {...props} basePath={basePath} />
+            </>
+        }
     </div>;
 };
 

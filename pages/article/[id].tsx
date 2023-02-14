@@ -50,9 +50,11 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
     };
     useEffect(() => {
         tocbot.init({
-            tocSelector: ".tocbot-list",
+            tocSelector: ".table-of-contents",
             contentSelector: ".post-content",
             headingSelector: "h1, h2, h3, h4",
+            listItemClass: 'text-sm ',
+            linkClass: 'text-black',
             collapseDepth: exp,
             orderedList: false,
         });
@@ -112,9 +114,8 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                 keyword={data.keyword}
                 description={data.description}
             />
-            <div className="container">
-                <div className="post-toc">
-                    <div className="tocbot-list" />
+                <div className="table-of-contents">
+                    <div className="tocbot-list"></div>
                     <div className="tocbot-list-menu">
                         <a className="tocbot-toc-expand" onClick={expMenu}>
                             {exp === 1 ? "展开全部" : "折叠"}
@@ -123,77 +124,66 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                         <a onClick={handleToBottom}>移到底部</a>
                     </div>
                 </div>
-                <article className="post-wrap">
-                    <main role="main">
-                        <header className="post-header">
-                            <h1 className="post-title">{data.title}</h1>
+                <article className="prose m-auto mb-8">
+                    <header className="post-header">
+                            <h1 className="mb-0 text-2rem">{data.title}</h1>
                             <div className="post-meta">
-                                <span className="post-time">创建时间: {data.created_at}</span>
-                                {/*<span>&nbsp; 浏览 &nbsp;{data.browse}</span>*/}
-                                <div>
-                                    <span className="post-category">
-                                        分类:
-                                        <Link
-                                            href={`/category/[cId]`}
-                                            as={`/category/${data.category.id}`}
-                                        >
-                                            <a> {data.category && data.category.name} </a>
-                                        </Link>
-                                    </span>
-                                </div>
+                                <span className="opacity-50 !-mt-2">{data.created_at}</span>
+                                <span className="post-category">
+                                    <Link  href={`/category/[cId]`} as={`/category/${data.category.id}`}>
+                                        <a> {data.category && data.category.name} </a>
+                                    </Link>
+                                </span>
                             </div>
                         </header>
 
                         <div ref={contentRef}
-                            className="post-content"
-                            style={{ paddingTop: "2rem" }}
+                             className="post-content"
                             dangerouslySetInnerHTML={{ __html: ht_ }}
                         />
-                    </main>
 
-                    <div onClick={handleClose} className="popup" ref={popupRef}>
-                        <div className="bg">
-                            <img src={url} alt={url} />
+                        <div onClick={handleClose} className="popup" ref={popupRef}>
+                            <div className="bg">
+                                <img src={url} alt={url} />
+                            </div>
                         </div>
-                    </div>
 
-                    <section className="post-copyright">
-                        <p className="copyright-item">
-                            <span>版权属于: {data.author.nickname}</span>
-                        </p>
-                        <p className="copyright-item">
-                            <span>本文链接:</span>
-                            <span>
-                                <a target="_Blank" href={_link}>
-                                    {_link}
-                                </a>
-                            </span>
-                        </p>
-                        <p className="copyright-item">
-                            <span>转载时须注明出处及本声明</span>
-                        </p>
-                    </section>
-                    <section className="post-tags">
-                        <div>
-                            <span>Tags:</span>
-                            <span className="tag">
-                                {data.tags.map((tag: any) => {
-                                    return (
-                                        <Link key={tag.id} href="/tag/[id]" as={`/tag/${tag.id}`}>
-                                            <a style={{ marginRight: "0.5rem" }}># {tag.name} </a>
-                                        </Link>
-                                    );
-                                })}
-                            </span>
-                        </div>
-                        <div>
-                            <a onClick={handleBack}>back</a>
-                            {/*<span>· </span>*/}
-                            {/*<Link href="/">home</Link>*/}
-                        </div>
-                    </section>
-                </article>
-            </div>
+                        <section className="post-copyright">
+                            <p className="copyright-item">
+                                <span>版权属于: {data.author.nickname}</span>
+                            </p>
+                            <p className="copyright-item">
+                                <span>本文链接:</span>
+                                <span>
+                                    <a target="_Blank" href={_link}>
+                                        {_link}
+                                    </a>
+                                </span>
+                            </p>
+                            <p className="copyright-item">
+                                <span>转载时须注明出处及本声明</span>
+                            </p>
+                        </section>
+                        <section className="post-tags">
+                            <div>
+                                <span>Tags:</span>
+                                <span className="tag">
+                                    {data.tags.map((tag: any) => {
+                                        return (
+                                            <Link key={tag.id} href="/tag/[id]" as={`/tag/${tag.id}`}>
+                                                <a style={{ marginRight: "0.5rem" }}># {tag.name} </a>
+                                            </Link>
+                                        );
+                                    })}
+                                </span>
+                            </div>
+                            <div>
+                                <a onClick={handleBack}>back</a>
+                                {/*<span>· </span>*/}
+                                {/*<Link href="/">home</Link>*/}
+                            </div>
+                        </section>
+                    </article>
         </>
     );
 

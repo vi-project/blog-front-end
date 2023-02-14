@@ -3,10 +3,10 @@ import request from '../utils/request';
 
 const Index: React.FunctionComponent<any> = (props) => {
     const { data } = props;
-    return <div className="main">
-        <div className="container">
-            <div className="post-wrap">
-                <div className="intro">
+    return <div className="">
+        <div className="h-98 prose m-auto">
+            <div className="flex ">
+                <div className="pt-10">
                     <h1 className="home-title b-red">{data.title}</h1>
                     <p className="home-description">
                         {data.content}

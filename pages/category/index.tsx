@@ -11,17 +11,15 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
    const { data } = props;
     return (
         <>
-        <div className="container">
-            <div className="post-wrap">
+        <div className="prose m-auto">
                 <div className="post-title">分类</div>
-                <div className="categories-card">
+                <div className="w-full flex flex-wrap items-start justify-between tag">
                     {
                         data.map((c: I_Category) => {
                             const {articles  = []} = c;
                             const showMore = articles.length > 5;
                             const articleList =  articles.length && articles.slice(0,5) || [];
-                            return <div key={c.id} className="card-item">
-                                <div className="categories">
+                            return <div key={c.id} className="w-45%">
                                     <Link href={`/category/[id]`} as={`/category/${c.id}`}>
                                         <a>
                                             <h3>
@@ -32,9 +30,9 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
                                     </Link>
                                     {
                                         articleList.map(art=> {
-                                            return <article key={art.id} className="archive-item">
+                                            return <article key={art.id} className="ml-8">
                                                 <Link href="/article/[id]" as={`/article/${art.id}`} >
-                                                    <a className="archive-item-link">
+                                                    <a className="text-sm op-80">
                                                         {art.title}
                                                     </a>
                                                 </Link>
@@ -43,16 +41,13 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
                                     }
                                     {
                                         showMore && <Link href="/category/[cId]" as={`/category/${c.id}`}  >
-                                            <a className="more-post-link" > More  </a>
+                                            <a className="text-sm op-80 ml-8 !decoration-underline" > more  ...  </a>
                                         </Link>
                                     }
-
-                                </div>
                             </div>;
                         })
                     }
                 </div>
-            </div>
         </div>
         </>
     );

@@ -8,11 +8,11 @@ import NotFound from "../../component/NotFound";
 
 const CategoryDetail: React.FunctionComponent<I_BaseList> = (props) =>{
     const basePath = `/category/${props.id}`;
-    return <div className="post-wrap">
+    return <div className="prose m-auto">
         {
             !props.category ? <NotFound /> : <>
-                <div className="relative pt-10 pointer-events-none">
-                    <span className="absolute text-4em">{props.category.name}</span>
+                <div className="pointer-events-none">
+                    <span className="text-4em">{props.category.name}</span>
                 </div>
                 <ArticleBaseList {...props} basePath={basePath} />
             </>

@@ -10,22 +10,23 @@ interface I_TagsProps {
 
 const TagPage: React.FunctionComponent<I_TagsProps> = (props) => {
     const { data = [] } = props;
+    console.log(props);
     return (
         <>
             {/*<Header title={'标签'} />*/}
-            <div className="container">
-                <div className="post-wrap tags">
+            <div className="prose m-auto">
+                <div className="tags">
                     <h2 className="post-title">-&nbsp;标签&nbsp;-</h2>
-                    <div className="tag-cloud-tags">
+                    <div className="">
                         {
                             data.map(tag=>(
                                  <Link key={tag.id}
                                              href="/tag/[id]"
                                              as={`/tag/${tag.id}`}>
-                                    <a >
+                                    <a className="p-3 op-80 inline-block">
                                         {tag.name}
                                         <small>
-                                            {tag.articleNum}
+                                            ({tag.articles.length})
                                         </small>
                                     </a>
                                 </Link>

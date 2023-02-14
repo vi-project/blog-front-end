@@ -22,7 +22,7 @@ export interface Tag {
     id: number
     key: string
     name: string
-    articleNum: number
+    articles: []
 }
 
 export enum Status {
@@ -61,4 +61,6 @@ export interface I_BaseList {
     id?: number
 
     category?: I_Category
+
+    tag?: I_Tag
 }
