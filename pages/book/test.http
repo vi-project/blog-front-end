@@ -1,0 +1,75 @@
+###
+GET /article HTTP/1.1
+Host: localhost:3001
+
+###
+GET /article/1 HTTP/1.1
+Host: localhost:3001
+
+
+###
+POST /book HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+
+{
+  "name": "fsfasf",
+  "author":"author"
+}
+
+
+### 获取单个详情
+GET /book/2557z5vsojcw HTTP/1.1
+Host: localhost:3001
+
+
+### 添加新的book
+POST /book HTTP/1.1
+Host: localhost:3001
+Content-Type: multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+title12
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="author"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="21.pdf"
+Content-Type: application/pdf
+
+< ./21.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkX2F0IjoiMjAyMi0wMS0yMiIsInVwZGF0ZWRfYXQiOiIyMDIyLTAyLTA5IiwiZGVsZXRlZF9hdCI6IkludmFsaWQgRGF0ZSIsImlkIjoxLCJuaWNrbmFtZSI6InZpbmNlbnQiLCJhdmF0YXIiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsInVzZXJuYW1lIjoidmluY2VudC5jeUBmb3htYWlsLmNvbSIsImlhdCI6MTY3NjcwMDQ4NywiZXhwIjoxNjc2Nzg2ODg3fQ.pJenZo-G-0AJH0JyCWqefc4iMQHIDcfebS_QKspfgw4
+
+
+
+
+### 编辑的book
+PATCH  /book/25581eyijchs HTTP/1.1
+Host: localhost:3001
+Content-Type: multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+abcdEEE
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="author"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="21.pdf"
+Content-Type: application/pdf
+
+< ./21.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### 查询所有书籍
+GET /book?size=10 HTTP/1.1
+Host: localhost:3001
+

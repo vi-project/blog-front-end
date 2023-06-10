@@ -7,9 +7,9 @@ export default function Container(props: any) {
     return <>
         <Header />
         <NavBar />
-        <main className="px-7 py-10">
+        <main className="px-7 py-10 flex-1">
             {props.children}
-            <Footer />
         </main>
+        <Footer />
     </>;
 }

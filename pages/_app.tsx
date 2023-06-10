@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ContainerBox from '../component/Container';
 import '../public/styles/uno.css';
-import '../public/style/index.css';
-import 'highlight.js/styles/github.css';
+import '../public/style/main.css';
+import '../public/style/prose.css';
 import '../public/style/pagination.css';
 
 

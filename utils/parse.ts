@@ -1,52 +1,107 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import MarkdownIt from 'markdown-it';
+import shiki from 'shiki';
 // @ts-ignore
-import marked from 'marked';
-import hl from 'highlight.js';
-// 继承marked中的Renderer类 覆盖Renderer中的 image方法
+import TOC from 'markdown-it-table-of-contents';
+import { remove } from 'diacritics';
+import anchor from "markdown-it-anchor";
+import LinkAttributes from 'markdown-it-link-attributes';
 
-class Renderer extends marked.Renderer{
-    private options: any;
-    image(href: string, title: string, text: string) {
-        if (href === null) {
-            return text;
-        }
-        let out = '<img class="lazy" ' +
-            'src="' + href + '&lazyLoad' + '" ' +
-            'data-src="' + href + '" ' +
-            'alt="' + text + '"';
-        if (title) {
-            out += ' title="' + title + '"';
-        }
-        out += this.options.xhtml ? '/>' : '>';
-        return out;
-    }
+
+let darkHighlighter!: shiki.Highlighter;
+
+let lightHighlighter!:shiki.Highlighter;
+
+const rControl = /[\u0000-\u001F]/g;
+const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g;
+
+function slugify(str:string) {
+    return (
+        remove(str).replace(rControl, '')
+            .replace(rSpecial, '-')
+            .replace(/-{2,}/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .replace(/^(\d)/, '_$1')
+            .toLowerCase()
+    );
 }
 
-marked.setOptions({
-    renderer: new Renderer(),
-    highlight: function(code: string, lang: string) {
-        hl.configure({classPrefix: ''});
-        const language = hl.getLanguage(lang) ? lang : 'plaintext';
-        return hl.highlight(language, code).value;
-    },
-    gfm: true,
-    tables: true,
-    breaks: true,
-    pedantic: false,
-    xhtml:true,
-    smartypants: false,
-});
+let markdown!:MarkdownIt;
+export const genMarkdown = async () => {
+  if(markdown) return markdown;
+  console.time('1');
+  if(!darkHighlighter){
+    darkHighlighter = await shiki.getHighlighter({
+      theme: 'vitesse-dark'
+    });
+  }
 
-function htmlSpecialCharsDecode(str = ''){
-    str = str.replace(/&amp;/g, '&');
-    str = str.replace(/&lt;/g, '<');
-    str = str.replace(/&gt;/g, '>');
-    str = str.replace(/&quot;/g, "''");
-    str = str.replace(/&#039;/g, "'");
-    return str;
-}
+  if(!lightHighlighter){
+    lightHighlighter = await shiki.getHighlighter({
+      theme: 'vitesse-light'
+    });
+  }
+  console.timeEnd('1');
+   const md = MarkdownIt({
+        html: true,
+        linkify: true,
+        typographer: true,
+        highlight: (code: string, l:string) => {
+          const lang = l || 'js';
+          const darkHtml = darkHighlighter.codeToHtml(code, { lang });
+           const dark = darkHtml.replace('<pre class="shiki ', '<pre class="shiki shiki-dark ');
+           const lightHtml = lightHighlighter.codeToHtml(code, { lang });
+           const light = lightHtml.replace('<pre class="shiki ', '<pre class="shiki shiki-light ');
+          return `<pre hidden></pre><div class="shiki-container language-${lang}">${dark}${light}</div>`;
+        },
 
+    });
+    md.use(TOC, {
+      includeLevel: [1, 2, 3],
+      slugify,
+    });
 
-export function decodeMarkDown(context:string){
-    return marked(htmlSpecialCharsDecode(context));
-}
+    md.use(anchor, {
+        slugify,
+        permalink: anchor.permalink.linkInsideHeader({
+            symbol: '#',
+            renderAttrs: () => ({ 'aria-hidden': 'true' }),
+        }),
+    });
+    md.use(LinkAttributes, {
+        matcher: (link: string) => /^https?:\/\//.test(link),
+        attrs: {
+            target: '_blank',
+            rel: 'noopener',
+        },
+    });
+
+  const defaultImageRenderer = md.renderer.rules.image;
+
+  md.renderer.rules.image = function (tokens, idx, imageOptions, env, self) {
+    const token = tokens[idx];
+
+    const attrs = token.attrs || [];
+
+    const attrObj: any = {};
+
+    attrs.forEach(v => {
+      // @ts-ignore
+      attrObj[v[0]] = v[1];
+    });
+
+    token.attrSet('class', "lazy");
+
+    token.attrSet('style', "max-width: 100%;");
+
+    token.attrSet('alt', token.content);
+
+    token.attrSet('data-src', `${attrObj.src}`);
+
+    token.attrSet('src', `${attrObj.src}&lazyLoad`);
+
+    return defaultImageRenderer!(tokens, idx, imageOptions, env, self);
+  };
+
+  markdown = md;
+  return md;
+};

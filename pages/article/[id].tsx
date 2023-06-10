@@ -4,8 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Header from "../../component/Header";
 import { Context } from "koa";
-import tocbot from "tocbot";
-import { decodeMarkDown } from '../../utils/parse';
+import {genMarkdown} from '../../utils/parse';
 import { IArticleDetail, I_ArticleProps } from '../../@types/index';
 
 const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
@@ -13,7 +12,6 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
     const popupRef = useRef<HTMLDivElement>(null);
     const { article: data } = props;
     const [_link, setLink] = useState("");
-    const [exp, setExp] = useState(1);
     const [url, setUrl] = useState("");
 
     useEffect(() => {
@@ -48,18 +46,6 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
     const handleClose = (): void => {
         popupRef && popupRef.current && popupRef.current.style ? (popupRef.current.style.display = "none") : undefined;
     };
-    useEffect(() => {
-        tocbot.init({
-            tocSelector: ".table-of-contents",
-            contentSelector: ".post-content",
-            headingSelector: "h1, h2, h3, h4",
-            listItemClass: 'text-sm ',
-            linkClass: 'text-black',
-            collapseDepth: exp,
-            orderedList: false,
-        });
-        return () => tocbot.destroy();
-    }, [exp]);
 
     useEffect(() => {
         const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
@@ -90,22 +76,11 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
     }, []);
 
 
-    function handleToTop() {
-        window.scrollTo(0, 0);
-    }
-
     function handleBack() {
         window.history.back();
     }
 
-    function handleToBottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-    const ht_ = decodeMarkDown(data.content || "");
-
-    const expMenu = () => {
-        setExp(exp === 1 ? 6 : 1);
-    };
+    const ht_ = data.content || "";
     return (
         <>
             <Header
@@ -114,16 +89,6 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                 keyword={data.keyword}
                 description={data.description}
             />
-                <div className="table-of-contents">
-                    <div className="tocbot-list"></div>
-                    <div className="tocbot-list-menu">
-                        <a className="tocbot-toc-expand" onClick={expMenu}>
-                            {exp === 1 ? "展开全部" : "折叠"}
-                        </a>
-                        <a onClick={handleToTop}>返回顶部</a>
-                        <a onClick={handleToBottom}>移到底部</a>
-                    </div>
-                </div>
                 <article className="prose m-auto mb-8">
                     <header className="post-header">
                             <h1 className="mb-0 text-2rem">{data.title}</h1>
@@ -138,8 +103,8 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                         </header>
 
                         <div ref={contentRef}
-                             className="post-content"
-                            dangerouslySetInnerHTML={{ __html: ht_ }}
+                             className="prose m-auto slide-enter-content"
+                             dangerouslySetInnerHTML={{ __html: ht_ }}
                         />
 
                         <div onClick={handleClose} className="popup" ref={popupRef}>
@@ -178,23 +143,20 @@ const Detail: React.FunctionComponent<IArticleDetail> = (props) => {
                                 </span>
                             </div>
                             <div>
-                                <a onClick={handleBack}>back</a>
-                                {/*<span>· </span>*/}
-                                {/*<Link href="/">home</Link>*/}
+                                {/*<a  >cd ... >>> </a>*/}
+                                <a className="cursor-pointer" onClick={handleBack}> ··· </a>
                             </div>
                         </section>
                     </article>
         </>
     );
-
-
 };
 
 const ArticleDetail: React.FunctionComponent<I_ArticleProps> = (props) => {
     const { article, error } = props;
     if (!article) return <div className="container">
-        <article className="post-wrap">
-            <h2> {error}</h2>
+        <article className="prose m-auto h-85 flex justify-center items-center">
+            <h1> {error}</h1>
         </article></div>;
     return <Detail article={article} />;
 };
@@ -203,6 +165,8 @@ export async function getServerSideProps(ctx: Context): Promise<any> {
     const { query: { id } } = ctx;
     try {
         const { data } = await request.get(`/article/${id}`, {});
+        const md = await genMarkdown();
+        data.content = md.render(data.content);
         return { props: { article: data } };
     } catch (e) {
         return { props: { error: 'article not exists.' } };

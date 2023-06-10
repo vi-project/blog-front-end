@@ -12,42 +12,42 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
     return (
         <>
         <div className="prose m-auto">
-                <div className="post-title">分类</div>
-                <div className="w-full flex flex-wrap items-start justify-between tag">
-                    {
-                        data.map((c: I_Category) => {
-                            const {articles  = []} = c;
-                            const showMore = articles.length > 5;
-                            const articleList =  articles.length && articles.slice(0,5) || [];
-                            return <div key={c.id} className="w-45%">
-                                    <Link href={`/category/[id]`} as={`/category/${c.id}`}>
-                                        <a>
-                                            <h3>
-                                                <i className="iconfont" style={{paddingRight: 4, fontWeight: 500 }}>&#xe626;</i>
-                                                {c.name}
-                                            </h3>
-                                        </a>
-                                    </Link>
-                                    {
-                                        articleList.map(art=> {
-                                            return <article key={art.id} className="ml-8">
-                                                <Link href="/article/[id]" as={`/article/${art.id}`} >
-                                                    <a className="text-sm op-80">
-                                                        {art.title}
-                                                    </a>
-                                                </Link>
-                                            </article>;
-                                        })
-                                    }
-                                    {
-                                        showMore && <Link href="/category/[cId]" as={`/category/${c.id}`}  >
-                                            <a className="text-sm op-80 ml-8 !decoration-underline" > more  ...  </a>
-                                        </Link>
-                                    }
-                            </div>;
+          <div className="post-title">分类</div>
+          <div className="grid grid-cols-2 grid-gap-1 grid-auto-flow">
+            {
+                  data.map((c: I_Category) => {
+                    const {articles = []} = c;
+                    const showMore = articles.length > 5;
+                    const articleList =  articles.length && articles.slice(0,5) || [];
+                    return <div key={c.id} className="item">
+                      <Link href={`/category/[id]`} as={`/category/${c.id}`}>
+                        <a>
+                          <h3>
+                            <i className="iconfont" style={{paddingRight: 4, fontWeight: 500 }}>&#xe626;</i>
+                            {c.name}
+                          </h3>
+                        </a>
+                      </Link>
+                      {
+                        articleList.map(art=> {
+                          return <article key={art.id} className="ml-8">
+                            <Link href="/article/[id]" as={`/article/${art.id}`} >
+                              <a className="text-sm op-80">
+                                {art.title}
+                              </a>
+                            </Link>
+                          </article>;
                         })
-                    }
-                </div>
+                      }
+                      {
+                          showMore && <Link href="/category/[cId]" as={`/category/${c.id}`}  >
+                              <a className="text-sm op-80 ml-8 !decoration-underline" > more  ...  </a>
+                          </Link>
+                      }
+                    </div>;
+                  })
+            }
+          </div>
         </div>
         </>
     );

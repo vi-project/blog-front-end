@@ -1,0 +1,212 @@
+:root {
+    --c-bg: #fff;
+    --c-scrollbar: #eee;
+    --c-scrollbar-hover: #bbb;
+    --vincent-fg: #000
+}
+
+html {
+    background-color: var(--c-bg);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+html.dark {
+    --c-bg: #222;
+    --c-scrollbar: #111;
+    --c-scrollbar-hover: #222;
+    --vincent-fg: #fff
+}
+
+body {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: #8884;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+    background: var(--c-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--c-scrollbar);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--c-scrollbar-hover);
+}
+
+h2 + p > em:first-child {
+    opacity: 0.5;
+    display: block;
+    margin-top: -20px;
+    font-size: 0.9em;
+}
+
+.dark [img-light] {
+    display: none;
+}
+
+html:not(.dark) [img-dark] {
+    display: none;
+}
+
+@keyframes slide-enter {
+    0% {
+        transform: translateY(10px);
+        opacity: 0
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 100
+    }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+    html:not(.no-sliding) [slide-enter],
+    html:not(.no-sliding) .slide-enter,
+    html:not(.no-sliding) .slide-enter-content > * {
+        --enter-stage: 0;
+        --enter-step: 90ms;
+        --enter-initial: 0ms;
+        animation: slide-enter 1s both 1;
+        animation-delay: calc(var(--enter-initial) + var(--enter-stage) * var(--enter-step));
+    }
+
+    .slide-enter-content > *:nth-child(1) { --enter-stage: 1; }
+    .slide-enter-content > *:nth-child(2) { --enter-stage: 2; }
+    .slide-enter-content > *:nth-child(3) { --enter-stage: 3; }
+    .slide-enter-content > *:nth-child(4) { --enter-stage: 4; }
+    .slide-enter-content > *:nth-child(5) { --enter-stage: 5; }
+    .slide-enter-content > *:nth-child(6) { --enter-stage: 6; }
+    .slide-enter-content > *:nth-child(7) { --enter-stage: 7; }
+    .slide-enter-content > *:nth-child(8) { --enter-stage: 8; }
+    .slide-enter-content > *:nth-child(9) { --enter-stage: 9; }
+    .slide-enter-content > *:nth-child(10) { --enter-stage: 10; }
+    .slide-enter-content > *:nth-child(11) { --enter-stage: 11; }
+    .slide-enter-content > *:nth-child(12) { --enter-stage: 12; }
+    .slide-enter-content > *:nth-child(13) { --enter-stage: 13; }
+    .slide-enter-content > *:nth-child(14) { --enter-stage: 14; }
+    .slide-enter-content > *:nth-child(15) { --enter-stage: 15; }
+    .slide-enter-content > *:nth-child(16) { --enter-stage: 16; }
+    .slide-enter-content > *:nth-child(17) { --enter-stage: 17; }
+    .slide-enter-content > *:nth-child(18) { --enter-stage: 18; }
+    .slide-enter-content > *:nth-child(19) { --enter-stage: 19; }
+    .slide-enter-content > *:nth-child(20) { --enter-stage: 20; }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+    z-index: 1;
+}
+::view-transition-new(root) {
+    z-index: 9999;
+}
+.dark::view-transition-old(root) {
+    z-index: 9999;
+}
+.dark::view-transition-new(root) {
+    z-index: 1;
+}
+
+.header h1 {
+    margin-bottom: 0;
+}
+
+.logo {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+}
+
+.nav {
+    padding: 2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto max-content;
+    box-sizing: border-box;
+}
+
+.nav > * {
+    margin: auto;
+}
+
+.nav img {
+    margin-bottom: 0;
+}
+
+.nav a {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+    opacity: 0.6;
+    outline: none;
+}
+
+.nav a:hover {
+    opacity: 1;
+    text-decoration-color: inherit;
+}
+
+.nav .right {
+    display: grid;
+    grid-gap: 1.2rem;
+    grid-auto-flow: column;
+}
+
+.nav .right > * {
+    margin: auto;
+}
+
+.my-fixed {
+    position: fixed;
+    z-index: -1;
+    mask-image:radial-gradient(circle, transparent, black);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*pointer-events: none;*/
+}
+
+html.dark .shiki-light {
+    display: none;
+}
+
+html:not(.dark) .shiki-dark {
+    display: none;
+}
+
+.shiki-light {
+    background: #f8f8f8!important;
+}
+
+.shiki-dark {
+    /*background: #0e0e0e!important*/
+}
+
+.post-copyright {
+    margin-top: 16px;
+    border-top: 1px solid #88888825;
+}

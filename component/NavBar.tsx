@@ -18,6 +18,11 @@ const navConfig = [
         icon: 'i-tabler-tag'
     },
     {
+        title: '书籍',
+        router: '/book',
+        icon: 'i-tabler-tag'
+    },
+    {
         title: '关于',
         router: '/about',
         icon: 'i-tabler-user'
@@ -27,7 +32,7 @@ const navConfig = [
 export default function NavBar() {
     return <header className="z-40 header">
         <Link href={'/'}>
-            <a href='' className="absolute lg:fixed m-6 select-none outline-none">
+            <a href=''  className="w-10 h-10 absolute lg:fixed m-6 select-none outline-none">
                 {/*<img src="/avatar.png" className="w-10 h-10" alt="logo" />*/}
                 {/*<div className="h-10 w-10 text-center">*/}
                     <div className="i-tabler-home h-6 w-7" style={{color: "var(--vincent-fg)"}}></div>
