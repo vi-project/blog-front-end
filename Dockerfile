@@ -2,15 +2,16 @@ FROM alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/node:16.
 WORKDIR /app
 COPY . .
 
+USER root
+
 RUN yarn config set registry https://registry.npm.taobao.org
-RUN yarn install
+RUN yarn install --force
 ENV NODE_ENV production
 RUN yarn build
 
 #RUN addgroup -g 1001 -S nodejs
 #RUN adduser -S nextjs -u 1001
 #
-#USER nextjs
 
 EXPOSE 8000
 
