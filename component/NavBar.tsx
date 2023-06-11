@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ToggleTheme from "./ToggleTheme";
+import {github_url} from "../constant";
 
 const navConfig = [
     {
@@ -33,10 +34,7 @@ export default function NavBar() {
     return <header className="z-40 header">
         <Link href={'/'}>
             <a href=''  className="w-10 h-10 absolute lg:fixed m-6 select-none outline-none">
-                {/*<img src="/avatar.png" className="w-10 h-10" alt="logo" />*/}
-                {/*<div className="h-10 w-10 text-center">*/}
-                    <div className="i-tabler-home h-6 w-7" style={{color: "var(--vincent-fg)"}}></div>
-                {/*</div>*/}
+                <div className="i-tabler-home h-6 w-7" style={{color: "var(--vincent-fg)"}}></div>
             </a>
         </Link>
         <nav className="nav">
@@ -52,7 +50,7 @@ export default function NavBar() {
                             </Link>;
                         })
                     }
-                    <Link href={'https://github.com/Ryan-cyi'}>
+                    <Link href={github_url}>
                         <a className="menu-item" >
                             <div className={`text-1.25rem i-tabler-brand-github`}></div>
                         </a>
