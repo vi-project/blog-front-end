@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 
 RUN yarn config set registry https://registry.npm.taobao.org
-RUN yarn install --force
+RUN yarn install
 ENV NODE_ENV production
 RUN yarn build
 
