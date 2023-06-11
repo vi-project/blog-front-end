@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ToggleTheme from "./ToggleTheme";
-import {github} from "../constant";
+import {github_url} from "../constant";
 
 const navConfig = [
     {
@@ -50,7 +50,7 @@ export default function NavBar() {
                             </Link>;
                         })
                     }
-                    <Link href={github}>
+                    <Link href={github_url}>
                         <a className="menu-item" >
                             <div className={`text-1.25rem i-tabler-brand-github`}></div>
                         </a>
