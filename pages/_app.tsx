@@ -4,6 +4,7 @@ import '../public/styles/uno.css';
 import '../public/style/main.css';
 import '../public/style/prose.css';
 import '../public/style/pagination.css';
+import '../public/style/markdown.css';
 
 
 interface IHomeProps {

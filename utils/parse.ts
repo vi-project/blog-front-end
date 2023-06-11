@@ -28,7 +28,6 @@ function slugify(str:string) {
 let markdown!:MarkdownIt;
 export const genMarkdown = async () => {
   if(markdown) return markdown;
-  console.time('1');
   if(!darkHighlighter){
     darkHighlighter = await shiki.getHighlighter({
       theme: 'vitesse-dark'
@@ -40,7 +39,6 @@ export const genMarkdown = async () => {
       theme: 'vitesse-light'
     });
   }
-  console.timeEnd('1');
    const md = MarkdownIt({
         html: true,
         linkify: true,
@@ -53,20 +51,22 @@ export const genMarkdown = async () => {
            const light = lightHtml.replace('<pre class="shiki ', '<pre class="shiki shiki-light ');
           return `<pre hidden></pre><div class="shiki-container language-${lang}">${dark}${light}</div>`;
         },
-
     });
+
+    md.use(anchor, {
+      slugify,
+      permalink: anchor.permalink.linkInsideHeader({
+        symbol: '#',
+        renderAttrs: () => ({ 'aria-hidden': 'true' }),
+      }),
+    });
+
     md.use(TOC, {
       includeLevel: [1, 2, 3],
       slugify,
     });
 
-    md.use(anchor, {
-        slugify,
-        permalink: anchor.permalink.linkInsideHeader({
-            symbol: '#',
-            renderAttrs: () => ({ 'aria-hidden': 'true' }),
-        }),
-    });
+
     md.use(LinkAttributes, {
         matcher: (link: string) => /^https?:\/\//.test(link),
         attrs: {

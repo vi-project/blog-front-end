@@ -154,7 +154,7 @@ ol,ul,menu {
 }
 .prose pre {
     color: #e5e7eb;
-    /*overflow-x: auto;*/
+    overflow-x: auto;
     font-size: 0.875em;
     line-height: 1.7142857;
     margin-top: 1.7142857em;
@@ -190,6 +190,12 @@ ol,ul,menu {
     margin-bottom: 2em;
     font-size: 0.875em;
     line-height: 1.7142857;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-color: gray;
 }
 .prose thead {
     color: #111827;
@@ -575,4 +581,20 @@ pre {
 .popup .bg img{
     display: block;
     max-width: 70%;
+}
+
+
+a.item {
+    transition: .2s all ease-out;
+    text-decoration: none;
+    border-bottom: none!important;
+    opacity: .75
+}
+
+a.item:hover {
+    opacity: 1
+}
+
+.prose table td, .prose table th{
+    border: 1px solid #ddd;
 }

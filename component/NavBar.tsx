@@ -52,7 +52,7 @@ export default function NavBar() {
                             </Link>;
                         })
                     }
-                    <Link href={'https://github.com/vincent-cy'}>
+                    <Link href={'https://github.com/Ryan-cyi'}>
                         <a className="menu-item" >
                             <div className={`text-1.25rem i-tabler-brand-github`}></div>
                         </a>
