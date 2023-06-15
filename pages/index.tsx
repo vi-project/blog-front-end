@@ -3,20 +3,17 @@ import request from '../utils/request';
 
 const Index: React.FunctionComponent<any> = (props) => {
     const { data } = props;
-    return <div className="">
-        <div className="h-98 prose m-auto">
-            <div className="flex ">
-                <div className="pt-10">
-                    <h1 className="home-title b-red">{data.title}</h1>
-                    <p className="home-description">
-                        {data.content}
-                        <span>&nbsp;&nbsp;{data.from}
-                            <time>{data.created_at}</time>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+    return  <div className="prose m-auto flex" style={{alignItems: 'center', height: "calc(100vh - 20rem)"}}>
+          <div>
+            <h1 className="home-title b-red">{data.title}</h1>
+            <p className="home-description">
+              {data.content}
+              <span>
+                  {data.from}
+                <time>{data.created_at}</time>
+              </span>
+            </p>
+          </div>
     </div>;
 };
 

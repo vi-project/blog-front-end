@@ -3,7 +3,7 @@ import {github_url} from "../constant";
 
 const Index: React.FunctionComponent<any> = () => {
     return <>
-        <div className="prose m-auto">
+        <div className="prose m-auto flex" style={{alignItems: 'center', height: "calc(100vh - 20rem)"}}>
             <div className="intro">
                 <div className="text-8">
                     <p>在编程世界，我们如果不精进就是退步</p>
