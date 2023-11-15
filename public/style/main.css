@@ -2,7 +2,8 @@
     --c-bg: #fff;
     --c-scrollbar: #eee;
     --c-scrollbar-hover: #bbb;
-    --vincent-fg: #000
+    --vincent-fg: #000;
+    --blockquote-bg: #f9f9f9;
 }
 
 html {
@@ -15,7 +16,8 @@ html.dark {
     --c-bg: #222;
     --c-scrollbar: #111;
     --c-scrollbar-hover: #222;
-    --vincent-fg: #fff
+    --vincent-fg: #fff;
+    --blockquote-bg: #222;
 }
 
 body {

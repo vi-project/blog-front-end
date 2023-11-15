@@ -66,12 +66,12 @@ ol,ul,menu {
 }
 .prose ul > li {
     position: relative;
-    padding-left: 1.75em;
+    padding-left: 1.25em;
 }
 .prose ul > li::before {
     content: "";
     position: absolute;
-    background-color: #d1d5db;
+    background-color: var(--fg-deep);
     border-radius: 50%;
     width: 0.375em;
     height: 0.375em;
@@ -87,8 +87,9 @@ ol,ul,menu {
     font-weight: 500;
     font-style: italic;
     color: inherit;
-    border-left-width: 0.25rem;
-    border-color: rgba(125,125,125,0.3);
+    border-left: 4px solid #ccc;
+    margin: 0;
+    background-color: var(--blockquote-bg);
     quotes: "\201C""\201D""\2018""\2019";
     margin-top: 1.6em;
     margin-bottom: 1.6em;
@@ -144,10 +145,10 @@ ol,ul,menu {
     font-size: 0.875em;
 }
 .prose code::before {
-    content: "`";
+    /* content: "`"; */
 }
 .prose code::after {
-    content: "`";
+    /* content: "`"; */
 }
 .prose a code {
     color: #111827;
