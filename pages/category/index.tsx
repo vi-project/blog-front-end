@@ -32,7 +32,7 @@ const CategoryPage: React.FunctionComponent<I_CategoryProps> = (props) => {
                         articleList.map(art=> {
                           return <article key={art.id} className="ml-8">
                             <Link href="/article/[id]" as={`/article/${art.id}`} >
-                              <a className="text-sm op-80">
+                              <a className="text-base op-60">
                                 {art.title}
                               </a>
                             </Link>
