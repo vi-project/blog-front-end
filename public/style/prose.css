@@ -106,7 +106,7 @@ ol,ul,menu {
     font-weight: 800;
     font-size: 2.25em;
     margin-top: 0;
-    margin-bottom: 0.8888889em;
+    margin-bottom: 0.5rem;
     line-height: 1.1111111;
 }
 .prose h2 {
@@ -598,4 +598,8 @@ a.item:hover {
 
 .prose table td, .prose table th{
     border: 1px solid #ddd;
+}
+
+.prose .post-meta {
+    margin-botton: 0.5rem;
 }
