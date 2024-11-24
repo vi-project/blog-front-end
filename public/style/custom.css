@@ -1,0 +1,267 @@
+.pointer-events-none {
+    pointer-events: none
+}
+
+.absolute {
+    position: absolute
+}
+
+.relative {
+    position: relative
+}
+
+.bottom-0 {
+    bottom: 0
+}
+
+.left--3rem {
+    left: -3rem
+}
+
+.top--1\.5rem {
+    top: -1.5rem
+}
+
+.z-40 {
+    z-index: 40
+}
+
+.grid {
+    display: grid
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2,minmax(0,1fr))
+}
+
+.m-6 {
+    margin: 1.5rem
+}
+
+.m-auto {
+    margin: auto
+}
+
+.\!-mt-2 {
+    margin-top: -.5rem!important
+}
+
+.mb-0 {
+    margin-bottom: 0
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem
+}
+
+.mb-8 {
+    margin-bottom: 2rem
+}
+
+.ml-8 {
+    margin-left: 2rem
+}
+
+.mt-10 {
+    margin-top: 2.5rem
+}
+
+.mt-2 {
+    margin-top: .5rem
+}
+
+.block {
+    display: block
+}
+
+.inline-block {
+    display: inline-block
+}
+
+.h-10 {
+    height: 2.5rem
+}
+
+.h-6 {
+    height: 1.5rem
+}
+
+.h-85 {
+    height: 21.25rem
+}
+
+.h20 {
+    height: 5rem
+}
+
+.w-10 {
+    width: 2.5rem
+}
+
+.w-7 {
+    width: 1.75rem
+}
+
+.w-full {
+    width: 100%
+}
+
+.flex {
+    display: flex
+}
+
+.flex-1 {
+    flex: 1 1
+}
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.items-center {
+    align-items: center
+}
+
+.justify-center {
+    justify-content: center
+}
+
+.grid-gap-1 {
+    grid-gap: .25rem;
+    gap: .25rem
+}
+
+.b-red {
+    --un-border-opacity: 1;
+    border-color: rgba(248,113,113,var(--un-border-opacity))
+}
+
+.bg-red {
+    --un-bg-opacity: 1;
+    background-color: rgba(248,113,113,var(--un-bg-opacity))
+}
+
+.p-3 {
+    padding: .75rem
+}
+
+.px {
+    padding-left: 1rem;
+    padding-right: 1rem
+}
+
+.px-7 {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem
+}
+
+.py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem
+}
+
+.text-center {
+    text-align: center
+}
+
+.align-middle {
+    vertical-align: middle
+}
+
+.font-sans {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji
+}
+
+.text-1\.25rem {
+    font-size: 1.25rem
+}
+
+.text-2rem,.text-8 {
+    font-size: 2rem
+}
+
+.text-4em {
+    font-size: 4em
+}
+
+.text-8em {
+    font-size: 8em
+}
+
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem
+}
+
+.text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem
+}
+
+.font-normal {
+    font-weight: 400
+}
+
+.leading-1\.2em {
+    line-height: 1.2em
+}
+
+.dark .dark\:text-gray-200 {
+    --un-text-opacity: 1;
+    color: rgba(229,231,235,var(--un-text-opacity))
+}
+
+.text-gray-700 {
+    --un-text-opacity: 1;
+    color: rgba(55,65,81,var(--un-text-opacity))
+}
+
+.\!decoration-underline {
+    -webkit-text-decoration-line: underline!important;
+    text-decoration-line: underline!important
+}
+
+.no-underline {
+    text-decoration: none
+}
+
+.op-6 {
+    opacity: .06
+}
+
+.op-60 {
+    opacity: .6
+}
+
+.op-80 {
+    opacity: .8
+}
+
+.op50,.opacity-50 {
+    opacity: .5
+}
+
+.outline-none {
+    outline: 2px solid transparent;
+    outline-offset: 2px
+}
+
+.transition {
+    transition-property: color,background-color,border-color,outline-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-text-decoration-color,-webkit-backdrop-filter;
+    transition-property: color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+    transition-property: color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-text-decoration-color,-webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .15s
+}
