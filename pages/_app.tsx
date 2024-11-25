@@ -5,7 +5,7 @@ import '../public/style/main.css';
 import '../public/style/prose.css';
 import '../public/style/pagination.css';
 import '../public/style/markdown.css';
-import '../public/style/custom.css'
+import '../public/style/custom.css';
 
 
 interface IHomeProps {
