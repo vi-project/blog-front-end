@@ -21,7 +21,7 @@ const Header = (props: any) => {
    },[]);
 
     return <Head >
-        <title >{title || "Vincent's Blog Front-end"}</title>
+        <title >个人的学习历程</title>
         <meta name="keywords" content={keyword} />
         <meta name='description' content={description} />
         <link rel="icon" href="/favicon.ico" />
